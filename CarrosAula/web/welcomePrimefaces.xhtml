@@ -15,7 +15,9 @@
 
         <h:body>
             <center>
-            <h:form id="formulario">
+            
+                <h:form id="formulario">
+                <p:messages autoUpdate="true"/>
                 <h:panelGrid>
             <p:panel header="Incluir Carro">
                 
@@ -23,20 +25,35 @@
                     <h:outputText value="Marca: " />
                     <p:inputText id="marca" value="#{ctrlCarro.carro.marca}"/>
                     <h:outputText value="Modelo: " />
-                    <p:inputText id="modelo" value="#{CtrlCarro.Carro.modelo}"/>
+                    <p:inputText id="modelo" value="#{ctrlCarro.carro.modelo}"/>
                     <h:outputText value="Ano: " />
-                    <p:inputText id="Ano" value="#{CtrlCarro.Carro.ano}"/>
+                    <p:inputText id="Ano" value="#{ctrlCarro.carro.ano}" maxlength="4"/>
                     <h:outputText value="Preço: " />
-                    <p:inputText id="preco" value="#{CtrlCarro.Carro.preco}"/>
-                    <p:commandButton value="Gravar" />
-                    <p:commandButton value="Limpar" type="reset"/>
-                    
-                    
-                </h:panelGrid>
-                
-                
-             
+                    <p:inputText id="preco" value="#{ctrlCarro.carro.preco}"/>
+                    <p:commandButton value="Gravar" action="#{ctrlCarro.inserirCarro()}" update="tabelaCarros" />
+                    <p:commandButton value="Limpar" type="reset"/>             
+                </h:panelGrid>     
             </p:panel>
+                    <p:dataTable id="tabelaCarros" value="#{ctrlCarro.carros}" emptyMessage="Não há registros" var="carro" paginator="true" rows="3">
+                        <p:column headerText="Marca" filterBy="#{carro.marca}"  >
+                            <h:outputText value="#{carro.marca}"/>
+                        </p:column>
+                        <p:column headerText="Modelo" filterBy="#{carro.modelo}">
+                            <h:outputText value="#{carro.modelo}"/>
+                        </p:column>
+                        <p:column headerText="Ano" filterBy="#{carro.ano}">
+                            <h:outputText value="#{carro.ano}"/>
+                        </p:column>
+                        <p:column headerText="Preço">
+                            <h:outputText value="#{carro.preco}"/>
+                        </p:column>   
+                        <p:column>
+                            <p:commandButton value="Remover" action="#{ctrlCarro.removerCarro(carro)}" update="tabelaCarros"/>
+                        </p:column>                        
+                    </p:dataTable>
+                    
+                    
+                    
 </h:panelGrid>
           
 </h:form>

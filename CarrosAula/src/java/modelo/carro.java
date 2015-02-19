@@ -17,11 +17,11 @@ public class carro {
     public carro() {
     }
 
-    public carro(String marca, String modelo, int ano, double preço) {
+    public carro(String marca, String modelo, int ano, double preco) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
-        this.preco = preço;
+        this.preco = preco;
     }
     
     
